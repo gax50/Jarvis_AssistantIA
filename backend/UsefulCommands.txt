@@ -1,0 +1,20 @@
+
+pour créer un environnement virtuel afin d'avoir les mêmes packages
+    *python -m venv .venv
+    *py -3.12 -m venv .venv pour installer avec la version python au choix
+pour activer l'environnement virtuel
+    .venv\Scripts\activate
+
+pour lister les packages
+    pip list
+
+pour créer une liste des dependencies/packages:
+    pip freeze > requirements.txt
+
+Pour montrer les versions python installées sur l'appareil-
+    py -0
+
+Pour créer un projet django (obligatoire avant création App django)
+    django-admin startproject nomProjet .
+Pour créer une app django
+    python manage.py startapp nomApp
