@@ -7,7 +7,7 @@ class ChatConsumer(WebsocketConsumer):
         self.accept()
 
     def receive(self, text_data):
-        self.send(text_data=f"You said {text_data}")
+        self.send(text_data=f"Le server a capté que vous avez dit: {text_data}")
     
     def disconnect(self, close_code):
         pass

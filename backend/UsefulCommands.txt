@@ -18,3 +18,5 @@ Pour créer un projet django (obligatoire avant création App django)
     django-admin startproject nomProjet .
 Pour créer une app django
     python manage.py startapp nomApp
+Pour lancer le serveur Backend:
+    uvicorn AssistantAi.asgi:application --reload --host 0.0.0.0 --port 8000

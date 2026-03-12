@@ -48,16 +48,26 @@ export default function JarvisUI() {
   };
 
   useEffect(() => {
-    let mounted = true;
-    socketRef.current = new WebSocket("ws://localhost:8000/ws/chat/");
-    socketRef.current.onopen = () => {
-      console.log("Connexion WebSocket établie");
-      socketRef.current.send(JSON.stringify({ message: "Hello de JarvisUI!" }));  
-    };
+    
+    if(!socketRef.current){
+      socketRef.current = new WebSocket("ws://localhost:8000/ws/chat/");
+      socketRef.current.onopen = (event) => {
+        console.log("Connexion WebSocket établie");
+        socketRef.current.send(JSON.stringify({ message: "Hello de JarvisUI!" }));  
+      };
+      socketRef.current.onmessage = (event) => {  
+        console.log('Le client a reçu un message:', event.data);
+      }
+
+    }
 
     return () => {
-      mounted = false;
-      socketRef.current?.close();}
+      if(socketRef.current){
+        socketRef.current.close();
+        socketRef.current = null;
+        console.log("Socket fermé");
+      }
+    };
 
   },[]);
 
