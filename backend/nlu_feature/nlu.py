@@ -38,6 +38,8 @@ def nettoyer_donnees(dataset_brute):
     if dataset_brute is None:
         return
     
+    donnees_stockees = []
+
     #separation des donnees par lignes
     lignes = dataset_brute.split("\n")
     print("Nb de lignes: ", {len(lignes)})
@@ -52,7 +54,8 @@ def nettoyer_donnees(dataset_brute):
         ponctuation = string.punctuation
         for symbole in ponctuation:
             clean_action = clean_action.replace(symbole, "")
-        print(clean_action, action[1])
+        donnees_stockees.append([clean_action, action[1].strip()])
+    print(donnees_stockees)
 
 
 donnees_brute = charger_dataset()
