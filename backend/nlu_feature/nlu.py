@@ -17,9 +17,8 @@ def charger_dataset():
     except Exception as e:
         print("Une erreur est survenue")   
 
-#Preprocessing, data cleaning
-
-"""def nettoyer_phrase():  #lowercase puis supprimer ponctuation, et enfin split la phrase
+#Nettoyage input user pour le test
+def nettoyer_phrase():  #lowercase puis supprimer ponctuation, et enfin split la phrase
     ponctuation = string.punctuation
     phrase = str(input("Entrez une commande:\n")).lower()
     for symbole in ponctuation:
@@ -27,11 +26,6 @@ def charger_dataset():
     resultat = phrase.split()
     print(resultat)
     
-nettoyer_phrase()
-
-"""
-
-
 
 #fonction de nettoyage
 def nettoyer_donnees(dataset_brute):
@@ -39,24 +33,40 @@ def nettoyer_donnees(dataset_brute):
         return
     
     donnees_stockees = []
+    stop_words = ["mba", "ny","azafady","kely","hoe"]
 
     #separation des donnees par lignes
     lignes = dataset_brute.split("\n")
     print("Nb de lignes: ", {len(lignes)})
     
 
-    #separation action et commande
+    #separation des actions et commandes
     for ligne in lignes:
-        if not ligne or ',' not in ligne: #s il n'y a pas de ligne ou la virgule n'est pas dans une ligne
+        if not ligne or ',' not in ligne:
             continue
+
+        #decouper l'action par ,
         action = ligne.split(",")
-        clean_action = action[0].lower().strip()
+
+        #on nettoye d'abord le texte (miniscule, espace inutile)
+        phrase_propre = action[0].lower().strip()
         ponctuation = string.punctuation
         for symbole in ponctuation:
-            clean_action = clean_action.replace(symbole, "")
-        donnees_stockees.append([clean_action, action[1].strip()])
+            phrase_propre = phrase_propre.replace(symbole,"")
+
+            #On le divise en dernier lieu apres avoir tout fait
+            mots_liste = phrase_propre.split()
+        donnees_stockees.append([mots_liste, action[1].strip()])
+
+    print("Nettoyage terminé")
     print(donnees_stockees)
 
 
 donnees_brute = charger_dataset()
 nettoyer_donnees(donnees_brute)
+
+
+"""Prochaine etape:
+ Lister les mots uniques du dataset
+ Debuter l'algorithme des K plus proche voisin 
+ """
