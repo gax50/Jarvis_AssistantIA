@@ -25,7 +25,9 @@ def nettoyer_donnees(brute):
         return 
     
     dataset_entrainement = [] # ex: couple [Sokafy chrome, ouvrir_chrome()]
-    stop_words = ["mba", "indrindra", "koa", "ny", "azafady"]
+    stop_words = ["mba", "ny", "azafady", "kely", "hoe","dia", "fa",
+                  "ao", "amin", "an", "i","ve", "no", "re", "ve", 
+                  "koa","izany", "ity", "ireo", "izao"]
     dictionnaire_mots = [] # liste de tous les mots uniques
 
     # Separation par lignes du dataset.csv
