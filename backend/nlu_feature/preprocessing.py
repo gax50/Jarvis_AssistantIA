@@ -60,7 +60,7 @@ def nettoyer_donnees(brute):
         dataset_entrainement.append([features, colonnes[1].strip()])
         
     # Creer une liste sans doublons
-    vocabulaire_globale = list(set(dictionnaire_mots))
+    vocabulaire_globale = sorted(list(set(dictionnaire_mots)))
     print("Nettoyage terminé")
     print(vocabulaire_globale)
 
