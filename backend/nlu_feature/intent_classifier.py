@@ -5,23 +5,23 @@ from preprocessing import nettoyer_phrase, nettoyer_dataset, charger_dataset
 K_value = 3 #Pour l'algo KNN
 
 #on appelle le resulat du chargement des données
-#contenu = charger_dataset()
+contenu = charger_dataset()
 
+#2 arguments car nettoyer dataset returne 2 valeurs
+intentions, vocabulaire_global = nettoyer_dataset(contenu)
 
-mon_vocabulaire = ["meteo", "chrome", "envoye", "mail"]
-ma_phrase = "envoye mail"
+phrase_user = input("Entrez une commande: \n")
 
-def vectoriser(intent,vocabulaire):
-    vecteur = np.zeros(len(mon_vocabulaire), dtype=int)
-    clean = nettoyer_phrase(ma_phrase)
-
-    for word in mon_vocabulaire:
+def vectoriser(phrase_user, vocabulaires):
+    vecteur = np.zeros(len(vocabulaires) , dtype=int)
+    clean = nettoyer_phrase(phrase_user)
+    for word in vocabulaires:
         if word in clean:
-            indice = mon_vocabulaire.index(word)
+            indice = vocabulaires.index(word)
             vecteur[indice] = 1
+
     print(vecteur)
-    return vecteur
+    return(vecteur)
 
-
-vectoriser(ma_phrase,mon_vocabulaire)
+vectoriser(phrase_user,vocabulaire_global)
 
