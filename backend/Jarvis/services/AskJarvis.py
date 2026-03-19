@@ -17,7 +17,7 @@ headers = {
 data = {
     "model": "openai/gpt-4.1",
     "messages": [
-        {"role": "user", "content": "iNONA NY ATAO HOE FIRAISANA ARA NOFO"}
+        {"role": "user", "content": "Comment sera la meteo ce soir"}
     ]
 }
 
